@@ -55,3 +55,10 @@ docker build -t chrisbelyea/trmapp .
 docker run --rm -p 5000:5000 chrisbelyea/trmapp
 curl -4 http://127.0.0.1:5000/address/exposure/direct?address=1BQAPyku1ZibWGAgd8QePpW1vAKHowqLez
 ```
+
+On GCP
+
+```shell
+docker build -t gcr.io/sapient-biplane-308511/trmapp .
+docker push gcr.io/sapient-biplane-308511/trmapp
+```

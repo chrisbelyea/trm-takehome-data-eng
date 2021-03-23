@@ -67,10 +67,28 @@ In Part 2, you will be implementing your design from Part 1. In order to get you
 
 # Design
 
+## Assumptions
+
+1. On-premises is out of scope for this exercise. But must be deployable on GCP into customers' VPCs
+
 ## Options
 
-DB - Cloud SQL, Compute Engine, GKE? (how about Citus? Compute Engine or GKE...https://hub.docker.com/r/citusdata/citus)
-App - App Engine, GKE, Compute Engine
+### Database
+
+- Cloud SQL
+- PostgreSQL (+Citus) on Compute Engine
+- PostgreSQL on GKE?
+- Citus DB on GKE (https://hub.docker.com/r/citusdata/citus)
+
+### App
+
+In order of preference, with the most immutable options first.
+
+1. Cloud Run
+1. GKE
+1. Cloud Functions
+1. App Engine
+1. Compute Engine
 
 Helm charts?
 
@@ -80,6 +98,8 @@ Helm charts?
 
 ### How will you package your solution?
 
+App packaged in container. Infrastructure deployed via Terraform/Deployment Manager. If on K8s, a Helm chart.
+
 ### What is your monitoring strategy?
 
 ### What is the HA/disaster recovery process?
@@ -87,6 +107,8 @@ Helm charts?
 RTO/RPO?
 
 ### What is the regular deployment process?
+
+Distinguish between TRM Labs publishing, and
 
 ### How would you apply security patches or other updates?
 
