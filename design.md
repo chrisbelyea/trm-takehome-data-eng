@@ -67,6 +67,31 @@ In Part 2, you will be implementing your design from Part 1. In order to get you
 
 # Design
 
+System has two components: app & database.
+
+The app must:
+
+- Limit access to a subset of one or more Public or VPC IPs
+- Run multiple instances of the Python application
+- Execute "zero-downtime" deployments
+
+To achieve this:
+
+- App runs as a deployment on GKE
+- App has a service tied to an internal load balancer (as necessary)
+- App has a service tied to an external load balancer (as necessary)
+- Load balancers can be protected by VPC firewall rules as needed
+- The application can scale by adjusting the deployment's replica count
+- The application can scale automatically via HPA
+- The application uses K8s rolling deployments
+
+The database must:
+
+- Use PostgreSQL or, optionally, CitusDB
+- Update the DB software independent of the data on disk
+- Tune DB configuration parameters easily
+- Dynamically configure cluster size, and machine configuration (e.g, instance types)
+
 ## Notes
 
 ### Cloud Run

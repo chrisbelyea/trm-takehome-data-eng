@@ -62,4 +62,3 @@ spec:
   selector:
     app: "trmapp1"
   type: "LoadBalancer"
-  loadBalancerIP: ""
