@@ -92,6 +92,8 @@ The database must:
 - Tune DB configuration parameters easily
 - Dynamically configure cluster size, and machine configuration (e.g, instance types)
 
+To achieve this:
+
 ## Notes
 
 ### Cloud Run
@@ -104,6 +106,7 @@ The database must:
 - [Network Overview](https://cloud.google.com/kubernetes-engine/docs/concepts/network-overview)
 - Can use an Internal Load Balancer attached to a K8s service to manage traffic coming from within the same VPC network.
 - [Citus K8s support](https://github.com/citusdata/citus/issues/425)
+- [how do I add a firewall rule to a gke service?](https://stackoverflow.com/questions/53455197/how-do-i-add-a-firewall-rule-to-a-gke-service)
 
 ### App Engine
 
@@ -124,6 +127,9 @@ The database must:
 - [Use Azure Arc to deploy on GCP K8s?](https://docs.microsoft.com/en-us/azure/azure-arc/data/create-postgresql-hyperscale-server-group)
 - [Crunchy Data PostgreSQL K8s Operator](https://github.com/CrunchyData/postgres-operator)
 - [Azure Arc](https://azure.microsoft.com/en-us/services/azure-arc/hybrid-data-services/#pricing) is a way to run Citus on K8s
+- [Postgres HA on Compute Engine](https://github.com/chrisbelyea/trm-takehome-data-eng)
+- [How to deploy a PostgreSQL Cluster on Kubernetes + OpenEBS](https://containerized.me/how-to-deploy-a-postgresql-cluster-on-kubernetes-openebs/)
+
 
 ### App
 
