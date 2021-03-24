@@ -1,4 +1,7 @@
+import os
+
 from flask import Flask, request
+
 app = Flask(__name__)
 
 @app.route('/address/exposure/direct',  methods=['GET'])
@@ -18,4 +21,7 @@ def address_exposure_direct():
     "success": True
   }
 
-  return sample_res 
+  return sample_res
+
+if __name__ == '__main__':
+  app.run(debug=True, host="0.0.0.0", port=int(os.environ.get('PORT', 8080)))

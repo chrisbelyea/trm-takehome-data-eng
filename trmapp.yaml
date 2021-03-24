@@ -1,0 +1,65 @@
+---
+apiVersion: "v1"
+kind: "Namespace"
+metadata:
+  name: "trmapp1"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "trmapp1"
+  namespace: "trmapp1"
+  labels:
+    app: "trmapp1"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "trmapp1"
+  template:
+    metadata:
+      labels:
+        app: "trmapp1"
+    spec:
+      containers:
+        - name: "trmapp-1"
+          image: "gcr.io/sapient-biplane-308511/trmapp"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "trmapp1-hpa-xuwy"
+  namespace: "trmapp1"
+  labels:
+    app: "trmapp1"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "trmapp1"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        targetAverageUtilization: 80
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "trmapp1-service"
+  namespace: "trmapp1"
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+  labels:
+    app: "trmapp1"
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8080
+  selector:
+    app: "trmapp1"
+  type: "LoadBalancer"
+  loadBalancerIP: ""

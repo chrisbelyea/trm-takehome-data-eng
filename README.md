@@ -25,7 +25,7 @@ flask run
 ```
 
 **4. Hit the endpoint from your local browser**
-Enter `http://127.0.0.1:5000/address/exposure/direct?address=1BQAPyku1ZibWGAgd8QePpW1vAKHowqLez` into your browser!
+Enter `http://127.0.0.1:8080/address/exposure/direct?address=1BQAPyku1ZibWGAgd8QePpW1vAKHowqLez` into your browser!
 
 You should see the following response:
 
@@ -52,8 +52,8 @@ to connect via Python. I have listed the most common packages below:
 
 ```shell
 docker build -t chrisbelyea/trmapp .
-docker run --rm -p 5000:5000 chrisbelyea/trmapp
-curl -4 http://127.0.0.1:5000/address/exposure/direct?address=1BQAPyku1ZibWGAgd8QePpW1vAKHowqLez
+docker run --rm -p 8080:8080 chrisbelyea/trmapp
+curl -4 http://127.0.0.1:8080/address/exposure/direct?address=1BQAPyku1ZibWGAgd8QePpW1vAKHowqLez
 ```
 
 On GCP

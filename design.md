@@ -67,18 +67,38 @@ In Part 2, you will be implementing your design from Part 1. In order to get you
 
 # Design
 
+## Notes
+
+### Cloud Run
+
+- does not run within project's VPC
+- might be able to restrict IP access (whitelist) using a [Network Endpoint Group](https://cloud.google.com/load-balancing/docs/negs/)
+
+### GKE
+
+- [Network Overview](https://cloud.google.com/kubernetes-engine/docs/concepts/network-overview)
+- Can use an Internal Load Balancer attached to a K8s service to manage traffic coming from within the same VPC network.
+- [Citus K8s support](https://github.com/citusdata/citus/issues/425)
+
+### App Engine
+
+- Standard mode does not run within project's VPC (Flex mode does)
+
 ## Assumptions
 
-1. On-premises is out of scope for this exercise. But must be deployable on GCP into customers' VPCs
+1. On-premises deployment is out of scope for this exercise. But must be deployable on GCP by customers into their VPCs.
 
 ## Options
 
 ### Database
 
-- Cloud SQL
+- Cloud SQL (with [proxy](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine))
 - PostgreSQL (+Citus) on Compute Engine
 - PostgreSQL on GKE?
-- Citus DB on GKE (https://hub.docker.com/r/citusdata/citus)
+- Citus DB on GKE (https://hub.docker.com/r/citusdata/citus & https://github.com/citusdata/docker); appears to support clustering with docker-compose
+- [Use Azure Arc to deploy on GCP K8s?](https://docs.microsoft.com/en-us/azure/azure-arc/data/create-postgresql-hyperscale-server-group)
+- [Crunchy Data PostgreSQL K8s Operator](https://github.com/CrunchyData/postgres-operator)
+- [Azure Arc](https://azure.microsoft.com/en-us/services/azure-arc/hybrid-data-services/#pricing) is a way to run Citus on K8s
 
 ### App
 
@@ -101,6 +121,8 @@ Helm charts?
 App packaged in container. Infrastructure deployed via Terraform/Deployment Manager. If on K8s, a Helm chart.
 
 ### What is your monitoring strategy?
+
+Prometheus to StackDriver?
 
 ### What is the HA/disaster recovery process?
 
