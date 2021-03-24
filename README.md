@@ -62,3 +62,11 @@ On GCP
 docker build -t gcr.io/sapient-biplane-308511/trmapp .
 docker push gcr.io/sapient-biplane-308511/trmapp
 ```
+
+
+# Create K8s password for database credentials
+```shell
+kubectl create secret generic database \
+  --from-literal=username=postgres \
+  --from-literal=password='<PASSWORD GOES HERE>'
+```
