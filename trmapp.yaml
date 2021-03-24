@@ -24,6 +24,20 @@ spec:
       containers:
         - name: "trmapp-1"
           image: "gcr.io/sapient-biplane-308511/trmapp"
+          env:
+            - name: DB_HOST
+              valueFrom:
+
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: database
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: database
+                  key: password
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
