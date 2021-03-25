@@ -78,3 +78,5 @@ spec:
   selector:
     app: "trmapp1"
   type: "LoadBalancer"
+  loadBalancerSourceRanges:
+    - 10.150.0.0/20  # my us-east4 default subnet
