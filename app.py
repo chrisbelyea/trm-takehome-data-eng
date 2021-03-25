@@ -1,4 +1,3 @@
-import logging
 import os
 
 from flask import Flask, request
@@ -16,6 +15,8 @@ app = Flask(__name__)
 
 def get_database_version():
     response = ""
+    app.logger.info(f"DB_USER: {DB_USER}")
+    app.logger.info(f"DB_HOST: {DB_HOST}")
     # try/except/finally here would be good
     if DB_USER is not None and DB_PASS is not None and DB_HOST is not None:
         dbcon = psycopg2.connect(
@@ -24,9 +25,7 @@ def get_database_version():
         cursor = dbcon.cursor()
         cursor.execute("SELECT VERSION()")
         data = cursor.fetchone()
-        logging.info(
-            data
-        )  # Flask does some logging config so this doesn't work yet, need to integrate
+        app.logger.info(f"Got the following data from the database: {data}")
         response = data
         dbcon.close()
 

@@ -27,7 +27,9 @@ spec:
           env:
             - name: DB_HOST
               valueFrom:
-
+                secretKeyRef:
+                  name: database
+                  key: host
             - name: DB_USER
               valueFrom:
                 secretKeyRef:

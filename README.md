@@ -67,12 +67,8 @@ docker push gcr.io/sapient-biplane-308511/trmapp
 # Create K8s secret for database credentials
 Put the host in here for convenience, too
 ```shell
-kubectl create secret generic database \
+kubectl --namespace trmapp1 create secret generic database \
   --from-literal=username=postgres \
   --from-literal=password='<PASSWORD GOES HERE>' \
   --from-literal=host='<DB HOSTNAME OR IP GOES HERE>'
 ```
-kubectl create secret generic database \
-  --from-literal=username=postgres \
-  --from-literal=password='vy2NEiFcJcBC9njO' \
-  --from-literal=host='10.65.208.2'
