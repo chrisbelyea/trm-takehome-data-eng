@@ -24,6 +24,9 @@ spec:
       containers:
         - name: "trmapp-1"
           image: "gcr.io/sapient-biplane-308511/trmapp"
+          ports:
+            - containerPort: 8080
+              protocol: TCP
           env:
             - name: DB_HOST
               valueFrom:
@@ -66,8 +69,8 @@ kind: "Service"
 metadata:
   name: "trmapp1-service"
   namespace: "trmapp1"
-  annotations:
-    networking.gke.io/load-balancer-type: "Internal"
+  # annotations:
+  #   networking.gke.io/load-balancer-type: "Internal"
   labels:
     app: "trmapp1"
 spec:
@@ -77,6 +80,16 @@ spec:
       targetPort: 8080
   selector:
     app: "trmapp1"
-  type: "LoadBalancer"
-  loadBalancerSourceRanges:
-    - 10.150.0.0/20  # my us-east4 default subnet
+  type: "NodePort"
+  # loadBalancerSourceRanges:
+  #   - 10.150.0.0/20  # my us-east4 default subnet
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: trmapp1-ingress
+  namespace: trmapp1
+spec:
+  backend:
+    serviceName: trmapp1-service
+    servicePort: 80

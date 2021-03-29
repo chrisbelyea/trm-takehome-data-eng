@@ -32,6 +32,12 @@ def get_database_version():
     return response
 
 
+@app.route("/", methods=["GET", "HEAD"])
+def root():
+    """Return HTTP 200 for health checks."""
+    return "OK"
+
+
 @app.route("/address/exposure/direct", methods=["GET"])
 def address_exposure_direct():
     address = request.args.get("address", "")
