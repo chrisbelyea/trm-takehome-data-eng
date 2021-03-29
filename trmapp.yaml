@@ -65,12 +65,30 @@ spec:
         targetAverageUtilization: 80
 ---
 apiVersion: "v1"
-kind: "Service"
+kind: "Service" # Use this instead of Ingress to avoid needing a proxy subnet
 metadata:
   name: "trmapp1-service"
   namespace: "trmapp1"
-  # annotations:
-  #   networking.gke.io/load-balancer-type: "Internal"
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+  labels:
+    app: "trmapp1"
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8080
+  selector:
+    app: "trmapp1"
+  type: "LoadBalancer"
+  loadBalancerSourceRanges:
+    - 10.150.0.0/20  # my us-east4 default subnet
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "trmapp1-service-external"
+  namespace: "trmapp1"
   labels:
     app: "trmapp1"
 spec:
@@ -81,15 +99,13 @@ spec:
   selector:
     app: "trmapp1"
   type: "NodePort"
-  # loadBalancerSourceRanges:
-  #   - 10.150.0.0/20  # my us-east4 default subnet
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: trmapp1-ingress
+  name: trmapp1-ingress-external
   namespace: trmapp1
 spec:
   backend:
-    serviceName: trmapp1-service
+    serviceName: trmapp1-service-external
     servicePort: 80
