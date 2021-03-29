@@ -53,8 +53,8 @@ spec:
     kind: "Deployment"
     name: "trmapp1"
     apiVersion: "apps/v1"
-  minReplicas: 1
-  maxReplicas: 5
+  minReplicas: 2
+  maxReplicas: 10
   metrics:
     - type: "Resource"
       resource:

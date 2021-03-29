@@ -35,11 +35,19 @@ These system requirements are not exhaustive. Please feel free to ask additional
    In your answer, be sure to address:
 
    - How will you package your solution?
+      - App packaged as container, deployed with K8s config and/or Helm chart
+      - Database as container, deployed with K8s config and/or Helm chart
    - What is your monitoring strategy?
    - What is the HA/disaster recovery process?
+      - Use a regional (instead of zonal) GKE cluster
+      - PV disk snapshots
+      - pg_dump might not be performant enough for huge databases
+      - maybe create a sidecar or K8s cronjob that does a postgres checkpoint to flush everything and then call GCP API to create the snapshot
    - What is the regular deployment process?
    - How would you apply security patches or other updates?
+      - Update containers and use K8s rolling updates
    - How would you extend your deployment if we had to add additional services (e.g., message queues, caching, etc)?
+      -
 
 2. **Describe what other solutions you considered before arriving at your final solution, and why?**
 
@@ -164,5 +172,6 @@ RTO/RPO?
 Distinguish between TRM Labs publishing, and
 
 ### How would you apply security patches or other updates?
+VERIFY THAT DEPLOYMENT SPECIFIES ROLLING UPDATES
 
 ### How would you extend your deployment if we had to add additional services (e.g., message queues, caching, etc)?
