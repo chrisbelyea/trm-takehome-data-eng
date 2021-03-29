@@ -17,7 +17,7 @@ def get_database_version():
     response = ""
     app.logger.info(f"DB_USER: {DB_USER}")
     app.logger.info(f"DB_HOST: {DB_HOST}")
-    # try/except/finally here would be good
+    # TODO: try/except/finally here would be good
     if DB_USER is not None and DB_PASS is not None and DB_HOST is not None:
         dbcon = psycopg2.connect(
             user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT
