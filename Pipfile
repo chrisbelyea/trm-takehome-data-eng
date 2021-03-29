@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 flask = "==1.1.2"
-psycopg2-binary = "2.8.6"
+psycopg2-binary = "==2.8.6"
 
 [dev-packages]
 diagrams = "*"
@@ -15,4 +15,5 @@ black = "*"
 python_version = "3.9"
 
 [pipenv]
+# Black requires this to be true
 allow_prereleases = true
