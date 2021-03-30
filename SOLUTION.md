@@ -41,7 +41,7 @@ To achieve this:
 - The application can scale automatically via HPA
 - The application uses K8s rolling deployments, which can be used to roll out patches or other updates
 - For use with by customers, the app container image should be versioned & published via a pipeline and distributed via a shared registry
-- **Application can be monitored**
+- Monitoring is done via GCP Monitoring. For additional instrumentation a library like [prometheus-flask-exporter](https://pypi.org/project/prometheus-flask-exporter/) could be added to the app to present additional metrics.
 
 ### Database
 The database must:
@@ -65,7 +65,7 @@ To achieve this:
 - Helm release values can be used to alter DB configuration (ConfigMaps)
 - StatefulSet scale can be changed to change cluster size
 - Can set resource requests & limits to add CPU & memory
-- **Database can be monitored**
+- Monitoring is done via GCP Monitoring. For additional database metrics, add a [Prometheus exporter](https://github.com/prometheus-community/postgres_exporter) sidecar.
 
 ## Design
 The following diagrams provide an overview of the system and a more detailed look at the app and database components.
