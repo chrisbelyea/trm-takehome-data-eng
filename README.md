@@ -1,8 +1,15 @@
+# Exercise submission
+- For solution overview and architecture see [SOLUTION](solution.md).
+- For deployment and validation instructions see [DEPLOY](deploy.md).
+
+Thank you for your time! I know it's limited & valuable. :smile:
+
+
 ## Overview
 
-This repo provides the boiler plate required to setup the API for the takehome BONUS section. 
+This repo provides the boiler plate required to setup the API for the takehome BONUS section.
 
-This repo assumes: 
+This repo assumes:
 - Familiarity with Python
 - Understanding of basic HTTP request semantics
 - Installed Conda as a package manager
@@ -43,6 +50,3 @@ to connect via Python. I have listed the most common packages below:
 - RedShift/Postgres: [Psycopg2](https://pypi.org/project/psycopg2/)
 - MySQL: [mysqlclient](https://pypi.python.org/pypi/mysqlclient)
 - BigQuery: [google-cloud-bigquery](https://pypi.org/project/google-cloud-bigquery/)
-
-
-
