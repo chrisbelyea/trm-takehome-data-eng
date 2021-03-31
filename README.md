@@ -1,9 +1,15 @@
+# Exercise submission
+- For solution overview and architecture see [SOLUTION](solution.md).
+- For deployment and validation instructions see [DEPLOY](deploy.md).
+
+Thank you for your time! I know it's limited & valuable. :smile:
+
+
 ## Overview
 
 This repo provides the boiler plate required to setup the API for the takehome BONUS section.
 
 This repo assumes:
-
 - Familiarity with Python
 - Understanding of basic HTTP request semantics
 - Installed Conda as a package manager
@@ -17,7 +23,6 @@ This repo assumes:
 `conda install -n <env_name> requirements.txt`
 
 **3. Run the local flask Development Server**
-
 ```
 export FLASK_APP=app.py
 export FLASK_ENV=development
@@ -25,10 +30,9 @@ flask run
 ```
 
 **4. Hit the endpoint from your local browser**
-Enter `http://127.0.0.1:8080/address/exposure/direct?address=1BQAPyku1ZibWGAgd8QePpW1vAKHowqLez` into your browser!
+Enter `http://127.0.0.1:5000/address/exposure/direct?address=1BQAPyku1ZibWGAgd8QePpW1vAKHowqLez` into your browser!
 
 You should see the following response:
-
 ```
 {
   "data": [
@@ -43,32 +47,6 @@ You should see the following response:
 
 Depending on your data store, you may have to install one or more packages
 to connect via Python. I have listed the most common packages below:
-
 - RedShift/Postgres: [Psycopg2](https://pypi.org/project/psycopg2/)
 - MySQL: [mysqlclient](https://pypi.python.org/pypi/mysqlclient)
 - BigQuery: [google-cloud-bigquery](https://pypi.org/project/google-cloud-bigquery/)
-
-## Build & Run
-
-```shell
-docker build -t chrisbelyea/trmapp .
-docker run --rm -p 8080:8080 -e DB_HOST=$DB_HOST -e DB_PASS=$DB_PASS -e DB_USER=$DB_USER chrisbelyea/trmapp
-curl -4 http://127.0.0.1:8080/address/exposure/direct?address=1BQAPyku1ZibWGAgd8QePpW1vAKHowqLez
-```
-
-On GCP
-
-```shell
-docker build -t gcr.io/sapient-biplane-308511/trmapp .
-docker push gcr.io/sapient-biplane-308511/trmapp
-```
-
-
-# Create K8s secret for database credentials
-Put the host in here for convenience, too
-```shell
-kubectl --namespace trmapp1 create secret generic database \
-  --from-literal=username=postgres \
-  --from-literal=password='<PASSWORD GOES HERE>' \
-  --from-literal=host='<DB HOSTNAME OR IP GOES HERE>'
-```
