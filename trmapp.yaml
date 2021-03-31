@@ -1,9 +1,4 @@
 ---
-apiVersion: "v1"
-kind: "Namespace"
-metadata:
-  name: "trmapp1"
----
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
@@ -23,7 +18,7 @@ spec:
     spec:
       containers:
         - name: "trmapp-1"
-          image: "gcr.io/sapient-biplane-308511/trmapp"
+          image: "gcr.io/trm-takehome-chris-b/trmapp"
           ports:
             - containerPort: 8080
               protocol: TCP
