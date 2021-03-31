@@ -1,6 +1,6 @@
 # Exercise submission
-- For solution overview and architecture see [SOLUTION](solution.md).
-- For deployment and validation instructions see [DEPLOY](deploy.md).
+- For solution overview and architecture see [SOLUTION](./SOLUTION.md).
+- For deployment and validation instructions see [DEPLOY](./DEPLOY.md).
 
 Thank you for your time! I know it's limited & valuable. :smile:
 
